@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 let player = {
     x: 0,
     y: 0,
-    length: 20,
+    length: 16,
     left: false,
     right: false,
     up: false,
@@ -26,18 +26,17 @@ document.addEventListener("keydown", getKeydown);
 document.addEventListener("keyup", getKeyup);
 
 function init() {
-
+    gameState = "level";
 }
 
 function game() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     draw();
-    move();
 
-    if (game === "level") {
-        // put stuff here
+    if (gameState === "level") {
+        move();
     }
-    else if (game === "question") {
+    else if (gameState === "question") {
         // put stuff here
     }
 }
