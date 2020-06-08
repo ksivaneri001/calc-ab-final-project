@@ -20,7 +20,7 @@ let terrain = [ // each array in the terrain array is a level
     []
 ]
 
-let currentLevel = 1;
+let level = 0;
 const speed = 2;
 let dx;
 let dy;
@@ -37,15 +37,17 @@ document.addEventListener("keydown", getKeydown);
 document.addEventListener("keyup", getKeyup);
 
 function init() {
+    createTerrain();
+
     gameState = "level";
 }
 
 function game() { // basically a tick counter, each tick is 1/100 of a second
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    draw();
 
     if (gameState === "level") {
-        collisionDetection(currentLevel - 1);
+        drawLevel(level);
+        collisionDetection(level);
         move();
     }
     else if (gameState === "question") {
@@ -53,13 +55,28 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
     }
 }
 
-function draw() {
+function drawLevel(a) {
     ctx.strokeRect(player.x, player.y, player.length, player.length);
+
+    for (let i = 0; i < terrain[a].length; i++) {
+        ctx.strokeRect(terrain[a][i].x, terrain[a][i].y, terrain[a][i].width, terrain[a][i].height);
+    }
 }
 
-function collisionDetection(level) {
-    for (let i = 0; i < terrain[level].length; i++) {
-
+function collisionDetection(b) {
+    for (let i = 0; i < terrain[b].length; i++) {
+        if (player.x < terrain[b][i].x + terrain[b][i].width && player.x > terrain[b][i].x && player.y + player.length - (speed * 3) > terrain[b][i].y && player.y + (speed * 3) < terrain[b][i].y + terrain[b][i].height) {
+            player.x = terrain[b][i].x + terrain[b][i].width;
+        }
+        else if (player.x + player.length > terrain[b][i].x && player.x + player.length < terrain[b][i].x + terrain[b][i].width && player.y + player.length - (speed * 3) > terrain[b][i].y && player.y + (speed * 3) < terrain[b][i].y + terrain[b][i].height) {
+            player.x = terrain[b][i].x - player.length;
+        }
+        else if (player.y < terrain[b][i].y + terrain[b][i].height && player.y > terrain[b][i].y && player.x + player.length - (speed * 3) > terrain[b][i].x && player.x + (speed * 3) < terrain[b][i].x + terrain[b][i].width) {
+            player.y = terrain[b][i].y + terrain[b][i].height;
+        }
+        else if (player.y + player.length > terrain[b][i].y && player.y + player.length < terrain[b][i].y + terrain[b][i].height && player.x + player.length - (speed * 3) > terrain[b][i].x && player.x + (speed * 3) < terrain[b][i].x + terrain[b][i].width) {
+            player.y = terrain[b][i].y - player.length;
+        }
     }
 
     if (player.x < 0) {
@@ -103,7 +120,8 @@ function move() {
 }
 
 function createTerrain() {
-    
+    let testTerrain = {x: 100, y: 100, width: 50, height: 100};
+    terrain[0].push(testTerrain);
 }
 
 function getKeydown(event) {
