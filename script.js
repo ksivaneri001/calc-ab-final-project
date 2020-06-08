@@ -11,6 +11,7 @@ let player = {
     down: false
 };
 
+const speed = 2;
 let dx;
 let dy;
 let gameState = "off"; // either "off", "level", or "question" to denote where the platyer is in the game
@@ -34,6 +35,7 @@ function game() {
     draw();
 
     if (gameState === "level") {
+        collisionDetection();
         move();
     }
     else if (gameState === "question") {
@@ -45,22 +47,38 @@ function draw() {
     ctx.strokeRect(player.x, player.y, player.length, player.length);
 }
 
+function collisionDetection() {
+    if (player.x < 0) {
+        player.x = 0;
+    }
+    else if (player.x + player.length > canvas.width) {
+        player.x = canvas.width - player.length;
+    }
+
+    if (player.y < 0) {
+        player.y = 0;
+    }
+    else if (player.y + player.length > canvas.height) {
+        player.y = canvas.height - player.length;
+    }
+}
+
 function move() {
     if (player.left) {
-        dx = -3;
+        dx = -1 * speed;
     }
     else if (player.right) {
-        dx = 3;
+        dx = speed;
     }
     else {
         dx = 0;
     }
 
     if (player.up) {
-        dy = -3;
+        dy = -1 * speed;
     }
     else if (player.down) {
-        dy = 3;
+        dy = speed;
     }
     else {
         dy = 0;
