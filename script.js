@@ -11,6 +11,16 @@ let player = {
     down: false
 };
 
+let terrain = [ // each array in the terrain array is a level
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+]
+
+let currentLevel = 1;
 const speed = 2;
 let dx;
 let dy;
@@ -30,12 +40,12 @@ function init() {
     gameState = "level";
 }
 
-function game() {
+function game() { // basically a tick counter, each tick is 1/100 of a second
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     draw();
 
     if (gameState === "level") {
-        collisionDetection();
+        collisionDetection(currentLevel - 1);
         move();
     }
     else if (gameState === "question") {
@@ -47,7 +57,11 @@ function draw() {
     ctx.strokeRect(player.x, player.y, player.length, player.length);
 }
 
-function collisionDetection() {
+function collisionDetection(level) {
+    for (let i = 0; i < terrain[level].length; i++) {
+
+    }
+
     if (player.x < 0) {
         player.x = 0;
     }
@@ -86,6 +100,10 @@ function move() {
 
     player.x += dx;
     player.y += dy;
+}
+
+function createTerrain() {
+    
 }
 
 function getKeydown(event) {
