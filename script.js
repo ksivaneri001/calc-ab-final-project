@@ -1,6 +1,6 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
-ctx.fillStyle = "gray";
+ctx.strokeStyle = "black";
 
 let player = {
     x: null,
@@ -25,6 +25,21 @@ let terrain = [ // each array in the terrain array is a level
     [],
     [],
     []
+];
+
+let enemies = [
+    [
+
+    ],
+    [],
+    [],
+    [],
+    [],
+    []
+];
+
+let winZones = [
+    {x: 650, y: 325, width: 100, height: 75}
 ];
 
 let level = 0;
@@ -53,7 +68,8 @@ function init() {
 }
 
 function game() { // basically a tick counter, each tick is 1/100 of a second
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#d1f3ff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     if (gameState === "level") {
         drawLevel(level);
@@ -66,9 +82,17 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
 }
 
 function drawLevel(a) {
+    for (let i = 0; i < terrain[a].length; i++) {
+        ctx.fillStyle = "lightgreen";
+        ctx.fillRect(winZones[a].x, winZones[a].y, winZones[a].width, winZones[a].height);
+    }
+
+    ctx.fillStyle = "red";
+    ctx.fillRect(player.x, player.y, player.length, player.length);
     ctx.strokeRect(player.x, player.y, player.length, player.length);
 
     for (let i = 0; i < terrain[a].length; i++) {
+        ctx.fillStyle = "#5fb1cf";
         ctx.fillRect(terrain[a][i].x, terrain[a][i].y, terrain[a][i].width, terrain[a][i].height);
     }
 }
