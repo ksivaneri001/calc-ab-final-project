@@ -1,9 +1,10 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
+ctx.fillStyle = "gray";
 
 let player = {
-    x: 0,
-    y: 0,
+    x: null,
+    y: null,
     length: 16,
     left: false,
     right: false,
@@ -18,13 +19,14 @@ let terrain = [ // each array in the terrain array is a level
     [],
     [],
     []
-]
+];
 
 let level = 0;
 const speed = 2;
 let dx;
 let dy;
 let gameState = "off"; // either "off", "level", or "question" to denote where the platyer is in the game
+let hardMode = false;
 
 setInterval(game, 10);
 
@@ -39,6 +41,10 @@ document.addEventListener("keyup", getKeyup);
 function init() {
     createTerrain();
 
+    player.x = 100 - (player.length / 2);
+    player.y = canvas.height - 100 - player.length;
+    level = 0;
+    hardMode = false;
     gameState = "level";
 }
 
@@ -59,7 +65,7 @@ function drawLevel(a) {
     ctx.strokeRect(player.x, player.y, player.length, player.length);
 
     for (let i = 0; i < terrain[a].length; i++) {
-        ctx.strokeRect(terrain[a][i].x, terrain[a][i].y, terrain[a][i].width, terrain[a][i].height);
+        ctx.fillRect(terrain[a][i].x, terrain[a][i].y, terrain[a][i].width, terrain[a][i].height);
     }
 }
 
@@ -120,8 +126,25 @@ function move() {
 }
 
 function createTerrain() {
-    let testTerrain = {x: 100, y: 100, width: 50, height: 100};
-    terrain[0].push(testTerrain);
+    terrain = [
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+    ];
+
+    let level1Terrain = [
+        {x: 0, y: 0, width: 50, height: canvas.height},
+        {x: 750, y: 0, width: 50, height: canvas.height},
+        {x: 150, y: 250, width: 500, height: 150},
+        {x: 0, y: 0, width: canvas.width, height: 50},
+        {x: 0, y: 400, width: canvas.width, height: 50}
+    ];
+    for (let i = 0; i < level1Terrain.length; i++) {
+        terrain[0].push(level1Terrain[i]);
+    }
 }
 
 function getKeydown(event) {
