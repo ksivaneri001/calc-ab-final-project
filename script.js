@@ -43,7 +43,7 @@ let winZones = [
 ];
 
 let level = 0;
-const speed = 2;
+let speed = 2;
 let dx;
 let dy;
 let gameState = "off"; // either "off", "level", or "question" to denote where the platyer is in the game
@@ -125,6 +125,10 @@ function collisionDetection(b) {
     }
     else if (player.y + player.length > canvas.height) {
         player.y = canvas.height - player.length;
+    }
+
+    if (player.x >= winZones[b].x && player.x + player.length <= winZones[b].x + winZones[b].width && player.y >= winZones[b].y && player.y + player.length <= winZones[b].y + winZones[b].height) {
+        gameState = "question";
     }
 }
 
