@@ -5,3 +5,7 @@
     margin-right: auto;
     background-color: white;
 }
+
+* {
+  background-color: gray;
+}
