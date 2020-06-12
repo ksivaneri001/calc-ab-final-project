@@ -81,6 +81,12 @@ let terrain = [ // each array in the terrain array is a level
 
 let enemies = [
     [
+        // test enemies //
+        {x: 150, y: 100, radius: 8, setPoint1: 100, setPoint2: 200, speedX: 2, type: "X"},
+        {x: 200, y: 150, radius: 8, setPoint1: 100, setPoint2: 200, speedY: 3, type: "Y"},
+        {x: 400, y: 200, radius: 8, setPointTR: 450, setPointBR: 200, setPointBL: 350, setPointTL: 100, speedX: -1.5, speedY: 0, speedInit: 1.5, type: "CW"},
+        {x: 600, y: 100, radius: 8, setPointTL: 550, setPointBL: 200, setPointBR: 650, setPointTR: 100, speedX: -4, speedY: 0, speedInit: 4, type: "CCW"},
+        //////////////////
 
     ],
     [],
@@ -132,6 +138,7 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
         drawLevel(level);
         collisionDetection(level);
         move();
+        enemyMovement(level);
     }
     else if (gameState === "question") {
         // put stuff here
@@ -151,6 +158,14 @@ function drawLevel(a) {
     for (let i = 0; i < terrain[a].length; i++) {
         ctx.fillStyle = "#5fb1cf";
         ctx.fillRect(terrain[a][i].x, terrain[a][i].y, terrain[a][i].width, terrain[a][i].height);
+    }
+
+    for (let i = 0; i < enemies[a].length; i++) {
+        ctx.fillStyle = "purple";
+        ctx.beginPath();
+        ctx.arc(enemies[a][i].x, enemies[a][i].y, enemies[a][i].radius, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
     }
 }
 
@@ -212,6 +227,63 @@ function move() {
 
     player.x += dx;
     player.y += dy;
+}
+
+function enemyMovement(c) {
+    for (let i = 0; i < enemies[c].length; i++) {
+        switch (enemies[c][i].type) {
+            case "X":
+                enemies[c][i].speedX = (enemies[c][i].x < enemies[c][i].setPoint1) ? Math.abs(enemies[c][i].speedX) : (enemies[c][i].x > enemies[c][i].setPoint2) ? Math.abs(enemies[c][i].speedX) * -1 : enemies[c][i].speedX;
+                enemies[c][i].x += enemies[c][i].speedX;
+                break;
+            case "Y":
+                enemies[c][i].speedY = (enemies[c][i].y < enemies[c][i].setPoint1) ? Math.abs(enemies[c][i].speedY) : (enemies[c][i].y > enemies[c][i].setPoint2) ? Math.abs(enemies[c][i].speedY) * -1 : enemies[c][i].speedY;
+                enemies[c][i].y += enemies[c][i].speedY;
+                break;
+            case "CW":
+                if (enemies[c][i].speedX > 0 && enemies[c][i].speedY == 0 && enemies[c][i].x > enemies[c][i].setPointTR) {
+                    enemies[c][i].speedX = 0;
+                    enemies[c][i].speedY = enemies[c][i].speedInit;
+                }
+                else if (enemies[c][i].speedX == 0 && enemies[c][i].speedY > 0 && enemies[c][i].y > enemies[c][i].setPointBR) {
+                    enemies[c][i].speedX = enemies[c][i].speedInit * -1;
+                    enemies[c][i].speedY = 0;
+                }
+                else if (enemies[c][i].speedX < 0 && enemies[c][i].speedY == 0 && enemies[c][i].x < enemies[c][i].setPointBL) {
+                    enemies[c][i].speedX = 0;
+                    enemies[c][i].speedY = enemies[c][i].speedInit * -1;
+                }
+                else if (enemies[c][i].speedX == 0 && enemies[c][i].speedY < 0 && enemies[c][i].y < enemies[c][i].setPointTL) {
+                    enemies[c][i].speedX = enemies[c][i].speedInit;
+                    enemies[c][i].speedY = 0;
+                }
+                enemies[c][i].x += enemies[c][i].speedX;
+                enemies[c][i].y += enemies[c][i].speedY;
+                break;
+            case "CCW":
+                if (enemies[c][i].speedX < 0 && enemies[c][i].speedY == 0 && enemies[c][i].x < enemies[c][i].setPointTL) {
+                    enemies[c][i].speedX = 0;
+                    enemies[c][i].speedY = enemies[c][i].speedInit;
+                }
+                else if (enemies[c][i].speedX == 0 && enemies[c][i].speedY > 0 && enemies[c][i].y > enemies[c][i].setPointBL) {
+                    enemies[c][i].speedX = enemies[c][i].speedInit;
+                    enemies[c][i].speedY = 0;
+                }
+                else if (enemies[c][i].speedX > 0 && enemies[c][i].speedY == 0 && enemies[c][i].x > enemies[c][i].setPointBR) {
+                    enemies[c][i].speedX = 0;
+                    enemies[c][i].speedY = enemies[c][i].speedInit * -1;
+                }
+                else if (enemies[c][i].speedX == 0 && enemies[c][i].speedY < 0 && enemies[c][i].y < enemies[c][i].setPointTR) {
+                    enemies[c][i].speedX = enemies[c][i].speedInit * -1;
+                    enemies[c][i].speedY = 0;
+                }
+                enemies[c][i].x += enemies[c][i].speedX;
+                enemies[c][i].y += enemies[c][i].speedY;
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 function getKeydown(event) {
