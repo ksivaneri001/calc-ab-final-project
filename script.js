@@ -141,8 +141,8 @@ document.addEventListener("keyup", getKeyup);
 
 function init() {
     level = 1;
-    player.x = spawn[level].x
-    player.y = spawn[level].y
+    player.x = spawn[level].x;
+    player.y = spawn[level].y;
     hardMode = false;
     gameState = "level";
 }
@@ -150,11 +150,14 @@ function init() {
 function game() { // basically a tick counter, each tick is 1/100 of a second
     ctx.fillStyle = "#d1f3ff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    console.log("x:" + player.x)
-    console.log("y:" + player.y)
+
+    console.log("x:" + player.x);
+    console.log("y:" + player.y);
+
     if (gameState === "level") {
         drawLevel(level);
         collisionDetection(level);
+        hitDetection(level);
         move();
         enemyMovement(level);
     }
@@ -245,6 +248,15 @@ function move() {
 
     player.x += dx;
     player.y += dy;
+}
+
+function hitDetection(d) {
+    for (let i = 0; i < enemies[d].length; i++) {
+        if (Math.abs(enemies[d][i].x - (player.x + (player.length / 2))) < (player.length / 2) + enemies[d][i].radius && Math.abs(enemies[d][i].y - (player.y + (player.length / 2))) < (player.length / 2) + enemies[d][i].radius) {
+            player.x = spawn[level].x;
+            player.y = spawn[level].y;
+        }
+    }
 }
 
 function enemyMovement(c) {
