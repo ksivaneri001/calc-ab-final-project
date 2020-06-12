@@ -12,6 +12,15 @@ let player = {
     down: false
 };
 
+let spawn = [
+    {x: 100 - (player.length / 2), y: canvas.height - 100 - player.length},
+    {x: 100 - (player.length / 2), y: canvas.height - 100 - player.length},
+    {x: 50, y: 225},
+    {x: 50, y: 225},
+    {x: 50, y: 225},
+    {x: 50, y: 225}
+]
+
 let terrain = [ // each array in the terrain array is a level
     [
         {x: 0, y: 0, width: 50, height: canvas.height},
@@ -20,11 +29,54 @@ let terrain = [ // each array in the terrain array is a level
         {x: 0, y: 0, width: canvas.width, height: 50},
         {x: 0, y: 400, width: canvas.width, height: 50}
     ],
-    [],
-    [],
-    [],
-    [],
-    []
+    [
+        {x: 0, y: 0, width: 50, height: canvas.height},
+        {x: 0, y: 200, width: canvas.width-50, height: 50}
+    ],
+    [
+        {x: 0, y: 0, width: canvas.width, height: canvas.height/3},
+        {x: 0, y: 300, width: canvas.width, height: canvas.height/3},
+        {x: 0, y: 150, width: canvas.width/3, height: 30},
+        {x: 300, y: 150, width: canvas.width, height: 30},
+        {x: 0, y: 270, width: canvas.width/1.5, height: 30},
+        {x: 565, y: 270, width: canvas.width/2, height: 30}
+    ],
+    [
+        {x: 0, y: 0, width: 50, height: canvas.height},
+        {x: 750, y: 0, width: 50, height: canvas.height},
+        {x: 0, y: 0, width: 150, height: canvas.height/2.5},
+        {x: 0, y: 270, width: 150, height: canvas.height/2.5},
+        {x: 0, y: 0, width: canvas.width, height: canvas.height/6},
+        {x: 0, y: 375, width: canvas.width, height: canvas.height/6},
+        {x: canvas.width - 150, y: 0, width: canvas.width - 150, height: canvas.height/2.5},
+        {x: canvas.width - 150, y: 270, width: canvas.width - 150, height: canvas.height/2.5},
+    ],
+    [
+        {x: 0, y: 0, width: 50, height: canvas.height},
+        {x: 750, y: 0, width: 50, height: canvas.height},
+        {x: 0, y: 0, width: 75, height: canvas.height/2.5},
+        {x: 0, y: 270, width: 75, height: canvas.height/2.5},
+        {x: 0, y: 0, width: canvas.width, height: canvas.height/10},
+        {x: 0, y: 405, width: canvas.width, height: canvas.height/10},
+        {x: canvas.width - 75, y: 0, width: canvas.width - 75, height: canvas.height/2.5},
+        {x: canvas.width - 75, y: 270, width: canvas.width - 75, height: canvas.height/2.5},
+        {x: 225, y: 135, width: 100, height: canvas.height/2.5},
+        {x: 475, y: 135, width: 100, height: canvas.height/2.5},
+    ],
+    [
+        {x: 0, y: 0, width: 50, height: canvas.height},
+        {x: 750, y: 0, width: 50, height: canvas.height},
+        {x: 0, y: 0, width: canvas.width, height: canvas.height/4},
+        {x: 0, y: 337.5, width: canvas.width, height: canvas.height/4},
+        {x: 285, y: 0, width: 20, height: canvas.height/2.1},
+        {x: 285, y: 253.75, width: 20, height: canvas.height},
+        {x: 485, y: 0, width: 20, height: canvas.height/2.1},
+        {x: 485, y: 253.75, width: 20, height: canvas.height},
+        {x: 0, y: 0, width: 75, height: canvas.height/2.5},
+        {x: 0, y: 270, width: 75, height: canvas.height/2.5},
+        {x: canvas.width - 75, y: 0, width: canvas.width - 75, height: canvas.height/2.5},
+        {x: canvas.width - 75, y: 270, width: canvas.width - 75, height: canvas.height/2.5},
+    ]
 ];
 
 let enemies = [
@@ -39,7 +91,12 @@ let enemies = [
 ];
 
 let winZones = [
-    {x: 650, y: 325, width: 100, height: 75}
+    {x: 650, y: 325, width: 100, height: 75},
+    {x: 50, y: 0, width: 100, height: 75},
+    {x: 700, y: 175, width: 100, height: 200},
+    {x: 700, y: 175, width: 100, height: 200},
+    {x: 725, y: 175, width: 50, height: 200},
+    {x: 725, y: 175, width: 50, height: 200}
 ];
 
 let level = 0;
@@ -60,9 +117,9 @@ document.addEventListener("keydown", getKeydown);
 document.addEventListener("keyup", getKeyup);
 
 function init() {
-    player.x = 100 - (player.length / 2);
-    player.y = canvas.height - 100 - player.length;
     level = 0;
+    player.x = spawn[level].x
+    player.y = spawn[level].y
     hardMode = false;
     gameState = "level";
 }
