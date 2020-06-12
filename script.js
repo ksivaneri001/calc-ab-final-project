@@ -31,7 +31,7 @@ let terrain = [ // each array in the terrain array is a level
     ],
     [
         {x: 0, y: 0, width: 50, height: canvas.height},
-        {x: 0, y: 200, width: canvas.width-50, height: 50}
+        {x: 0, y: 200, width: canvas.width-40, height: 50}
     ],
     [
         {x: 0, y: 0, width: canvas.width, height: canvas.height/3},
