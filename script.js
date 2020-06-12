@@ -1,6 +1,8 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 ctx.strokeStyle = "black";
+ctx.textAlign = "center";
+ctx.font = "48px Arial";
 
 let player = {
     x: null,
@@ -164,6 +166,10 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
     else if (gameState === "question") {
         // put stuff here
     }
+    else if (gameState === "respawn") {
+        drawLevel(level);
+        enemyMovement(level);
+    }
 }
 
 function drawLevel(a) {
@@ -172,9 +178,11 @@ function drawLevel(a) {
         ctx.fillRect(winZones[a].x, winZones[a].y, winZones[a].width, winZones[a].height);
     }
 
-    ctx.fillStyle = "red";
-    ctx.fillRect(player.x, player.y, player.length, player.length);
-    ctx.strokeRect(player.x, player.y, player.length, player.length);
+    if (gameState === "level") {
+        ctx.fillStyle = "red";
+        ctx.fillRect(player.x, player.y, player.length, player.length);
+        ctx.strokeRect(player.x, player.y, player.length, player.length);
+    }
 
     for (let i = 0; i < terrain[a].length; i++) {
         ctx.fillStyle = "#5fb1cf";
@@ -187,6 +195,11 @@ function drawLevel(a) {
         ctx.arc(enemies[a][i].x, enemies[a][i].y, enemies[a][i].radius, 0, 2 * Math.PI);
         ctx.fill();
         ctx.stroke();
+    }
+
+    if (gameState === "respawn") {
+        ctx.fillStyle = "black";
+        ctx.fillText("Respawning...", canvas.width / 2, canvas.height / 2);
     }
 }
 
@@ -255,6 +268,8 @@ function hitDetection(d) {
         if (Math.abs(enemies[d][i].x - (player.x + (player.length / 2))) < (player.length / 2) + enemies[d][i].radius && Math.abs(enemies[d][i].y - (player.y + (player.length / 2))) < (player.length / 2) + enemies[d][i].radius) {
             player.x = spawn[level].x;
             player.y = spawn[level].y;
+            gameState = "respawn";
+            setTimeout(function() { gameState = "level"; }, 1000);
         }
     }
 }
