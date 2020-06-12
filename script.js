@@ -89,7 +89,24 @@ let enemies = [
         //////////////////
 
     ],
-    [],
+    [
+      {x: 150, y: 100, radius: 8, setPoint1: 100, setPoint2: 200, speedX: 2, type: "X"},
+      {x: 150, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 200, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 250, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 300, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 350, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 400, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 450, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 500, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 550, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 600, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 650, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 700, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 750, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+      {x: 400, y: 200, radius: 8, setPointTR: 450, setPointBR: 200, setPointBL: 350, setPointTL: 100, speedX: -1.5, speedY: 0, speedInit: 1.5, type: "CW"},
+      {x: 600, y: 100, radius: 8, setPointTL: 550, setPointBL: 200, setPointBR: 650, setPointTR: 100, speedX: -4, speedY: 0, speedInit: 4, type: "CCW"},
+    ],
     [],
     [],
     [],
@@ -123,7 +140,7 @@ document.addEventListener("keydown", getKeydown);
 document.addEventListener("keyup", getKeyup);
 
 function init() {
-    level = 0;
+    level = 1;
     player.x = spawn[level].x
     player.y = spawn[level].y
     hardMode = false;
@@ -133,7 +150,8 @@ function init() {
 function game() { // basically a tick counter, each tick is 1/100 of a second
     ctx.fillStyle = "#d1f3ff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+    console.log("x:" + player.x)
+    console.log("y:" + player.y)
     if (gameState === "level") {
         drawLevel(level);
         collisionDetection(level);
