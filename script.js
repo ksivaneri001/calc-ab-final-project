@@ -83,13 +83,15 @@ let terrain = [ // each array in the terrain array is a level
 
 let enemies = [
     [
-        // test enemies //
-        {x: 150, y: 100, radius: 8, setPoint1: 100, setPoint2: 200, speedX: 2, type: "X"},
-        {x: 200, y: 150, radius: 8, setPoint1: 100, setPoint2: 200, speedY: 3, type: "Y"},
-        {x: 400, y: 200, radius: 8, setPointTR: 450, setPointBR: 200, setPointBL: 350, setPointTL: 100, speedX: -1.5, speedY: 0, speedInit: 1.5, type: "CW"},
-        {x: 600, y: 100, radius: 8, setPointTL: 550, setPointBL: 200, setPointBR: 650, setPointTR: 100, speedX: -4, speedY: 0, speedInit: 4, type: "CCW"},
-        //////////////////
-
+        {x: 640, y: 225, radius: 10, setPoint1: 100, setPoint2: 720, speedX: 3.5, type: "X"},
+        {x: 460, y: 175, radius: 10, setPoint1: 100, setPoint2: 720, speedX: 3.5, type: "X"},
+        {x: 280, y: 125, radius: 10, setPoint1: 100, setPoint2: 720, speedX: 3.5, type: "X"},
+        {x: 100, y: 75, radius: 10, setPoint1: 100, setPoint2: 720, speedX: 3.5, type: "X"},
+        {x: 200, y: 300, radius: 8, setPoint1: 75, setPoint2: 225, speedY: 2.5, type: "Y"},
+        {x: 300, y: 300, radius: 8, setPoint1: 75, setPoint2: 225, speedY: 2.5, type: "Y"},
+        {x: 400, y: 300, radius: 8, setPoint1: 75, setPoint2: 225, speedY: 2.5, type: "Y"},
+        {x: 500, y: 300, radius: 8, setPoint1: 75, setPoint2: 225, speedY: 2.5, type: "Y"},
+        {x: 600, y: 300, radius: 8, setPoint1: 75, setPoint2: 225, speedY: 2.5, type: "Y"},
     ],
     [
         {x: 150, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
@@ -179,7 +181,7 @@ document.addEventListener("keydown", getKeydown);
 document.addEventListener("keyup", getKeyup);
 
 function init() {
-    level = 5;
+    level = 0;
     player.x = spawn[level].x;
     player.y = spawn[level].y;
     hardMode = false;
