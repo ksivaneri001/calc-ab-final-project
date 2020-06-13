@@ -92,32 +92,48 @@ let enemies = [
 
     ],
     [
-      {x: 150, y: 100, radius: 8, setPoint1: 100, setPoint2: 200, speedX: 2, type: "X"},
-      {x: 150, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 200, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 250, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 300, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 350, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 400, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 450, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 500, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 550, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 600, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 650, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 700, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 750, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
-      {x: 400, y: 200, radius: 8, setPointTR: 450, setPointBR: 200, setPointBL: 350, setPointTL: 100, speedX: -1.5, speedY: 0, speedInit: 1.5, type: "CW"},
-      {x: 600, y: 100, radius: 8, setPointTL: 550, setPointBL: 200, setPointBR: 650, setPointTR: 100, speedX: -4, speedY: 0, speedInit: 4, type: "CCW"},
+        {x: 150, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 200, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 250, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 300, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 350, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 400, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 450, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 500, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 550, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 600, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 650, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 700, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 750, y: 300, radius: 8, setPoint1: 260, setPoint2: 444, speedY: 5, type: "Y"},
+        {x: 600, y: 100, radius: 8, setPointTL: 550, setPointBL: 180, setPointBR: 750, setPointTR: 20, speedX: -2, speedY: 0, speedInit: 5, type: "CCW"},
+        {x: 400, y: 100, radius: 8, setPointTL: 350, setPointBL: 180, setPointBR: 550, setPointTR: 20, speedX: -2, speedY: 0, speedInit: 5, type: "CCW"},
+        {x: 200, y: 100, radius: 8, setPointTL: 150, setPointBL: 180, setPointBR: 350, setPointTR: 20, speedX: -2, speedY: 0, speedInit: 5, type: "CCW"},
     ],
-    [],
-    [],
-    [],
+    [
+        {x: 100, y: 205, radius: 12, setPoint1: 100, setPoint2: 660, speedX: 4, type: "X"},
+        {x: 660, y: 245, radius: 12, setPoint1: 100, setPoint2: 660, speedX: 4, type: "X"},
+        {x: 440, y: 205, radius: 8, setPoint1: 200, setPoint2: 250, speedY: 1, type: "Y"},
+        {x: 200, y: 205, radius: 8, setPoint1: 200, setPoint2: 250, speedY: 1, type: "Y"},
+        {x: 680, y: 205, radius: 8, setPoint1: 200, setPoint2: 250, speedY: 1, type: "Y"},
+    ],
+    [
+        {x: 600, y: 360, radius: 8, setPoint1: 90, setPoint2: 360, speedY: 4, type: "Y"},
+        {x: 500, y: 360, radius: 8, setPoint1: 90, setPoint2: 360, speedY: 4, type: "Y"},
+        {x: 400, y: 360, radius: 8, setPoint1: 90, setPoint2: 360, speedY: 4, type: "Y"},
+        {x: 300, y: 360, radius: 8, setPoint1: 90, setPoint2: 360, speedY: 4, type: "Y"},
+        {x: 200, y: 360, radius: 8, setPoint1: 90, setPoint2: 360, speedY: 4, type: "Y"},
+        {x: 400, y: 360, radius: 8, setPointTR: 450, setPointBR: 360, setPointBL: 350, setPointTL: 100, speedX: -2.5, speedY: 0, speedInit: 2.5, type: "CW"},
+        {x: 600, y: 100, radius: 8, setPointTL: 500, setPointBL: 360, setPointBR: 600, setPointTR: 100, speedX: -4, speedY: 0, speedInit: 4, type: "CCW"},
+        {x: 300, y: 100, radius: 8, setPointTL: 200, setPointBL: 360, setPointBR: 300, setPointTR: 100, speedX: -4, speedY: 0, speedInit: 4, type: "CCW"},
+    ],
+    [
+    ],
     []
 ];
 
 let winZones = [
     {x: 650, y: 325, width: 100, height: 75},
-    {x: 50, y: 0, width: 100, height: 75},
+    {x: 50, y: 0, width: 80, height: 75},
     {x: 700, y: 175, width: 100, height: 200},
     {x: 700, y: 175, width: 100, height: 200},
     {x: 725, y: 175, width: 50, height: 200},
@@ -128,7 +144,7 @@ let level = 0;
 let speed = 2;
 let dx;
 let dy;
-let gameState = "off"; // either "off", "level", or "question" to denote where the platyer is in the game
+let gameState = "off"; // either "off", "level", or "question" to denote where the player is in the game
 let hardMode = false;
 
 setInterval(game, 10);
