@@ -127,9 +127,9 @@ let enemies = [
         {x: 300, y: 100, radius: 8, setPointTL: 200, setPointBL: 360, setPointBR: 300, setPointTR: 100, speedX: -4, speedY: 0, speedInit: 4, type: "CCW"},
     ],
     [
-        {x: 400, y: 390, radius: 8, setPointTR: 450, setPointBR: 390, setPointBL: 350, setPointTL: 60, speedX: -3.5, speedY: 0, speedInit: 3.5, type: "CW"},
-        {x: 650, y: 390, radius: 8, setPointTR: 700, setPointBR: 390, setPointBL: 600, setPointTL: 60, speedX: -3.5, speedY: 0, speedInit: 3.5, type: "CW"},
-        {x: 150, y: 390, radius: 8, setPointTR: 200, setPointBR: 390, setPointBL: 100, setPointTL: 60, speedX: -3.5, speedY: 0, speedInit: 3.5, type: "CW"},
+        {x: 400, y: 390, radius: 8, setPointTR: 450, setPointBR: 390, setPointBL: 350, setPointTL: 60, speedX: -4.5, speedY: 0, speedInit: 4.5, type: "CW"},
+        {x: 650, y: 390, radius: 8, setPointTR: 700, setPointBR: 390, setPointBL: 600, setPointTL: 60, speedX: -4.5, speedY: 0, speedInit: 4.5, type: "CW"},
+        {x: 150, y: 390, radius: 8, setPointTR: 200, setPointBR: 390, setPointBL: 100, setPointTL: 60, speedX: -4.5, speedY: 0, speedInit: 4.5, type: "CW"},
         {x: 700, y: 70, radius: 10, setPoint1: 100, setPoint2: 700, speedX: 4, type: "X"},
         {x: 100, y: 110, radius: 10, setPoint1: 100, setPoint2: 700, speedX: 4, type: "X"},
         {x: 700, y: 380, radius: 10, setPoint1: 100, setPoint2: 700, speedX: 4, type: "X"},
@@ -137,7 +137,9 @@ let enemies = [
         {x: 450, y: 360, radius: 10, setPoint1: 60, setPoint2: 390, speedY: 4, type: "Y"},
         {x: 350, y: 360, radius: 10, setPoint1: 60, setPoint2: 390, speedY: 4, type: "Y"},
     ],
-    []
+    [
+        
+    ]
 ];
 
 let winZones = [
