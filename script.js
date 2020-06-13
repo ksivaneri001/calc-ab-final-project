@@ -70,10 +70,10 @@ let terrain = [ // each array in the terrain array is a level
         {x: 750, y: 0, width: 50, height: canvas.height},
         {x: 0, y: 0, width: canvas.width, height: canvas.height/4},
         {x: 0, y: 337.5, width: canvas.width, height: canvas.height/4},
-        {x: 285, y: 0, width: 20, height: canvas.height/2.1},
-        {x: 285, y: 253.75, width: 20, height: canvas.height},
-        {x: 485, y: 0, width: 20, height: canvas.height/2.1},
-        {x: 485, y: 253.75, width: 20, height: canvas.height},
+        {x: 285, y: 305.75, width: 20, height: canvas.height/4},
+        {x: 285, y: 53.75, width: 20, height: canvas.height/2.1},
+        {x: 485, y: 0, width: 20, height: canvas.height/3.1},
+        {x: 485, y: 180.75, width: 20, height: canvas.height},
         {x: 0, y: 0, width: 75, height: canvas.height/2.5},
         {x: 0, y: 270, width: 75, height: canvas.height/2.5},
         {x: canvas.width - 75, y: 0, width: canvas.width - 75, height: canvas.height/2.5},
@@ -138,7 +138,17 @@ let enemies = [
         {x: 350, y: 360, radius: 10, setPoint1: 60, setPoint2: 390, speedY: 4, type: "Y"},
     ],
     [
-        
+        {x: 710, y: 130, radius: 8, setPointTL: 520, setPointBL: 325, setPointBR: 710, setPointTR: 130, speedX: -4, speedY: 0, speedInit: 4, type: "CCW"},
+        {x: 270, y: 130, radius: 8, setPointTL: 90, setPointBL: 325, setPointBR: 270, setPointTR: 130, speedX: -4, speedY: 0, speedInit: 4, type: "CCW"},
+        {x: 320, y: 325, radius: 8, setPointTR: 470, setPointBR: 325, setPointBL: 320, setPointTL: 130, speedX: -4, speedY: 0, speedInit: 4, type: "CW"},
+        {x: 135, y: 325, radius: 10, setPoint1: 130, setPoint2: 325, speedY: 4, type: "Y"},
+        {x: 225, y: 130, radius: 10, setPoint1: 130, setPoint2: 325, speedY: 4, type: "Y"},
+        {x: 567.5, y: 325, radius: 10, setPoint1: 130, setPoint2: 325, speedY: 4, type: "Y"},
+        {x: 662.5, y: 130, radius: 10, setPoint1: 130, setPoint2: 325, speedY: 4, type: "Y"},
+        {x: 357.5, y: 325, radius: 10, setPoint1: 130, setPoint2: 325, speedY: 4, type: "Y"},
+        {x: 432.5, y: 130, radius: 10, setPoint1: 130, setPoint2: 325, speedY: 4, type: "Y"},
+        {x: 320, y: 285, radius: 10, setPoint1: 320, setPoint2: 470, speedX: 2.5, type: "X"},
+        {x: 470, y: 165, radius: 10, setPoint1: 320, setPoint2: 470, speedX: 2.5, type: "X"},
     ]
 ];
 
@@ -169,7 +179,7 @@ document.addEventListener("keydown", getKeydown);
 document.addEventListener("keyup", getKeyup);
 
 function init() {
-    level = 4;
+    level = 5;
     player.x = spawn[level].x;
     player.y = spawn[level].y;
     hardMode = false;
