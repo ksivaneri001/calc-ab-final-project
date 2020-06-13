@@ -1,8 +1,6 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 ctx.strokeStyle = "black";
-ctx.textAlign = "center";
-ctx.font = "48px Arial";
 
 let player = {
     x: null,
@@ -189,11 +187,11 @@ function init() {
 }
 
 function game() { // basically a tick counter, each tick is 1/100 of a second
-    ctx.fillStyle = "#d1f3ff";
+    ctx.fillStyle = (hardMode) ? "#ffca9e" : "#d1f3ff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    console.log("x:" + player.x);
-    console.log("y:" + player.y);
+    // console.log("x:" + player.x);
+    // console.log("y:" + player.y);
 
     if (gameState === "level") {
         drawLevel(level);
@@ -211,6 +209,12 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
     }
 }
 
+function clearTest() {
+    player.x = spawn[level + 1].x;
+    player.y = spawn[level + 1].y;
+    level++;
+}
+
 function drawLevel(a) {
     for (let i = 0; i < terrain[a].length; i++) {
         ctx.fillStyle = "lightgreen";
@@ -224,7 +228,7 @@ function drawLevel(a) {
     }
 
     for (let i = 0; i < terrain[a].length; i++) {
-        ctx.fillStyle = "#5fb1cf";
+        ctx.fillStyle = (hardMode) ? "#f08832" : "#5fb1cf";
         ctx.fillRect(terrain[a][i].x, terrain[a][i].y, terrain[a][i].width, terrain[a][i].height);
     }
 
@@ -236,8 +240,15 @@ function drawLevel(a) {
         ctx.stroke();
     }
 
+    ctx.fillStyle = "black";
+    ctx.textAlign = "right";
+    ctx.font = "24px Arial";
+    let difficultyText = (hardMode) ? "Hard" : "Normal";
+    ctx.fillText("Difficulty: " + difficultyText, canvas.width - 5, 25);
+
     if (gameState === "respawn") {
-        ctx.fillStyle = "black";
+        ctx.textAlign = "center";
+        ctx.font = "48px Arial";
         ctx.fillText("Respawning...", canvas.width / 2, canvas.height / 2);
     }
 }
@@ -318,11 +329,11 @@ function enemyMovement(c) {
         switch (enemies[c][i].type) {
             case "X":
                 enemies[c][i].speedX = (enemies[c][i].x < enemies[c][i].setPoint1) ? Math.abs(enemies[c][i].speedX) : (enemies[c][i].x > enemies[c][i].setPoint2) ? Math.abs(enemies[c][i].speedX) * -1 : enemies[c][i].speedX;
-                enemies[c][i].x += enemies[c][i].speedX;
+                enemies[c][i].x += (!hardMode) ? enemies[c][i].speedX : (enemies[c][i].speedX < 0) ? enemies[c][i].speedX - 1 : enemies[c][i].speedX + 1;
                 break;
             case "Y":
                 enemies[c][i].speedY = (enemies[c][i].y < enemies[c][i].setPoint1) ? Math.abs(enemies[c][i].speedY) : (enemies[c][i].y > enemies[c][i].setPoint2) ? Math.abs(enemies[c][i].speedY) * -1 : enemies[c][i].speedY;
-                enemies[c][i].y += enemies[c][i].speedY;
+                enemies[c][i].y += (!hardMode) ? enemies[c][i].speedY : (enemies[c][i].speedY < 0) ? enemies[c][i].speedY - 1 : enemies[c][i].speedY + 1;
                 break;
             case "CW":
                 if (enemies[c][i].speedX > 0 && enemies[c][i].speedY == 0 && enemies[c][i].x > enemies[c][i].setPointTR) {
@@ -341,8 +352,8 @@ function enemyMovement(c) {
                     enemies[c][i].speedX = enemies[c][i].speedInit;
                     enemies[c][i].speedY = 0;
                 }
-                enemies[c][i].x += enemies[c][i].speedX;
-                enemies[c][i].y += enemies[c][i].speedY;
+                enemies[c][i].x += (!hardMode || enemies[c][i].speedX == 0) ? enemies[c][i].speedX : (enemies[c][i].speedX < 0) ? enemies[c][i].speedX - 1 : enemies[c][i].speedX + 1;
+                enemies[c][i].y += (!hardMode || enemies[c][i].speedY == 0) ? enemies[c][i].speedY : (enemies[c][i].speedY < 0) ? enemies[c][i].speedY - 1 : enemies[c][i].speedY + 1;
                 break;
             case "CCW":
                 if (enemies[c][i].speedX < 0 && enemies[c][i].speedY == 0 && enemies[c][i].x < enemies[c][i].setPointTL) {
@@ -361,8 +372,8 @@ function enemyMovement(c) {
                     enemies[c][i].speedX = enemies[c][i].speedInit * -1;
                     enemies[c][i].speedY = 0;
                 }
-                enemies[c][i].x += enemies[c][i].speedX;
-                enemies[c][i].y += enemies[c][i].speedY;
+                enemies[c][i].x += (!hardMode || enemies[c][i].speedX == 0) ? enemies[c][i].speedX : (enemies[c][i].speedX < 0) ? enemies[c][i].speedX - 1 : enemies[c][i].speedX + 1;
+                enemies[c][i].y += (!hardMode || enemies[c][i].speedY == 0) ? enemies[c][i].speedY : (enemies[c][i].speedY < 0) ? enemies[c][i].speedY - 1 : enemies[c][i].speedY + 1;
                 break;
             default:
                 break;
