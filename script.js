@@ -220,7 +220,7 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
             questions[i] = i+1;
           }
         }
-        while(1 = 1) {
+        while(1 == 1) {
           index = (Math.random()*questions.length);
           Math.round(index);
           if(questions[index] != -1) {
