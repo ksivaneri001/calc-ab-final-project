@@ -481,7 +481,7 @@ function chooseQuestion() {
       index = (Math.random() * questions.length);
       // Math.round(index);
       index = Math.ceil(index)
-      if (questions[index-] != -1) {
+      if (questions[index - 1] != -1) {
         break;
       }
     }
