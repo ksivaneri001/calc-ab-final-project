@@ -177,6 +177,8 @@ let hardMode = false;
 let answer = "";
 let waitingforanswer = false;
 let answerIndex;
+let hitdetection = true;
+let incorrect = 0;
 
 let img1 = new Image();
 let img1Path = "images/question_1.png";
@@ -220,7 +222,7 @@ document.addEventListener("keydown", getKeydown);
 document.addEventListener("keyup", getKeyup);
 
 function init() {
-    level = 0;
+    level = 5;
     player.x = spawn[level].x;
     player.y = spawn[level].y;
     hardMode = false;
@@ -228,16 +230,18 @@ function init() {
 }
 
 function game() { // basically a tick counter, each tick is 1/100 of a second
-    ctx.fillStyle = (hardMode) ? "#ffca9e" : "#d1f3ff";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+    if(gameState === "level" || gameState === "question" || gameState === "respawn") {
+      ctx.fillStyle = (hardMode) ? "#ffca9e" : "#d1f3ff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
     // console.log("x:" + player.x);
     // console.log("y:" + player.y);
-
     if (gameState === "level") {
         drawLevel(level);
         collisionDetection(level);
-        hitDetection(level);
+        if(hitdetection) {
+          hitDetection(level);
+        }
         move();
         enemyMovement(level);
     }
@@ -248,13 +252,46 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
         drawLevel(level);
         enemyMovement(level);
     }
+    else if (gameState === "end") {
+        endGame();
+        gameState = "end screen"
+    }
 }
 
 function clearTest() {
     level++;
-    gameState = "level"
-    player.x = spawn[level].x;
-    player.y = spawn[level].y;
+    if(level == 6) {
+      gameState = "end"
+    }
+    else {
+      gameState = "level"
+      player.x = spawn[level].x;
+      player.y = spawn[level].y;
+    }
+}
+
+function endGame() {
+    if(incorrect > 0) {
+      ctx.fillStyle = "lightblue"
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.textAlign = "center";
+      ctx.font = "15px Arial";
+      ctx.fillStyle = "red"
+      if(incorrect == 1) {
+          ctx.fillText("You made it! But did you really win? You answered " + incorrect + " question wrong. Try again to get all the questions right!", 400, 200);
+      }
+      else {
+          ctx.fillText("You made it! But did you really win? You answered " + incorrect + " questions wrong. Try again to get all the questions right!", 400, 200);
+      }
+    }
+    else {
+      ctx.fillStyle = "lightblue"
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.textAlign = "center";
+      ctx.font = "20px Arial";
+      ctx.fillStyle = "green"
+      ctx.fillText("Well look at you. You made it to the end and got every question right. Good job!", 400, 200);
+    }
 }
 
 function drawLevel(a) {
@@ -547,6 +584,7 @@ function getKeydown(event) {
             clearTest();
         }
         else {
+            incorrect++
             hardMode = true;
             clearTest();
         }
@@ -559,6 +597,7 @@ function getKeydown(event) {
             clearTest();
         }
         else {
+            incorrect++
             hardMode = true;
             clearTest();
         }
@@ -571,6 +610,7 @@ function getKeydown(event) {
             clearTest();
         }
         else {
+            incorrect++
             hardMode = true;
             clearTest();
         }
@@ -583,6 +623,7 @@ function getKeydown(event) {
             clearTest();
         }
         else {
+            incorrect++
             hardMode = true;
             clearTest();
         }
