@@ -428,7 +428,7 @@ function chooseQuestion() {
     //     condition = true;
     //   }
     // }
-    // if (condition = true) {
+    // if (condition == true) {
     //   condition = false;
     //   for (i = 0; i < questions.length; i++) {
     //     questions[i] = i+1;
@@ -437,6 +437,9 @@ function chooseQuestion() {
     while (1 == 1) {
       index = Math.ceil(Math.random() * questions.length);
       // Math.round(index);
+      if(index < 0.5) {
+        index = 0
+      }
       if (questions[index] != -1) {
         break;
       }
