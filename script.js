@@ -523,7 +523,24 @@ function getKeydown(event) {
         player.down = true;
         player.up = false;
     }
+    if(event.keyCode == 87) {
+        player.up = true;
+        player.down = false;
+    }
+    if(event.keyCode == 65 && !waitingforanswer) {
+        player.left = true;
+        player.right = false;
+    }
+    if (event.keyCode == 83) {
+        player.down = true;
+        player.up = false;
+    }
+    if (event.keyCode == 68 && !waitingforanswer) {
+        player.right = true;
+        player.left = false;
+    }
     if (event.keyCode == 65 && waitingforanswer) {
+      waitingforanswer = false;
       answer = "a"
       realanswer = answers[answerIndex];
         if (realanswer == answer) {
@@ -535,6 +552,7 @@ function getKeydown(event) {
         }
     }
     if (event.keyCode == 66 && waitingforanswer) {
+      waitingforanswer = false;
       answer = "b"
       realanswer = answers[answerIndex];
         if (realanswer == answer) {
@@ -545,11 +563,8 @@ function getKeydown(event) {
             clearTest();
         }
     }
-    if(event.keyCode == 66 && !waitingforanswer) {
-        player.up = true;
-        player.down = false;
-    }
     if (event.keyCode == 67 && waitingforanswer) {
+      waitingforanswer = false;
       answer = "c"
       realanswer = answers[answerIndex];
         if (realanswer == answer) {
@@ -561,6 +576,7 @@ function getKeydown(event) {
         }
     }
     if (event.keyCode == 68 && waitingforanswer) {
+      waitingforanswer = false;
       answer = "d"
       realanswer = answers[answerIndex];
         if (realanswer == answer) {
@@ -585,5 +601,17 @@ function getKeyup(event2) {
     }
     else if (event2.keyCode == 40) {
         player.down = false;
+    }
+    if(event.keyCode == 87) {
+        player.up = false;
+    }
+    if(event.keyCode == 65 && !waitingforanswer) {
+        player.left = false;
+    }
+    if (event.keyCode == 83) {
+        player.down = false;
+    }
+    if (event.keyCode == 68 && !waitingforanswer) {
+        player.right = false;
     }
 }
