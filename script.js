@@ -23,6 +23,8 @@ let spawn = [
 
 let questions = [1,2,3,4,5,6,7,8,9,10]
 
+let answers = ["a","d","c","c","c","b","b","a","d","a"]
+
 let terrain = [ // each array in the terrain array is a level
     [
         {x: 0, y: 0, width: 50, height: canvas.height},
@@ -172,6 +174,9 @@ let dx;
 let dy;
 let gameState = "off"; // either "off", "level", or "question" to denote where the player is in the game
 let hardMode = false;
+let answer = "";
+let waitingforanswer = false;
+let answerIndex;
 
 let img1 = new Image();
 let img1Path = "images/question_1.png";
@@ -445,53 +450,58 @@ function chooseQuestion() {
     if (index == 1) {
       questions[index - 1] = -1
       currentQuestion = img1;
-      console.log("help");
+      checkAnswer(index-1);
     }
     if (index == 2) {
       questions[index - 1] = -1
       currentQuestion = img2;
-      console.log("help");
+      checkAnswer(index-1);
     }
     if (index == 3) {
       questions[index - 1] = -1
       currentQuestion = img3;
-      console.log("help");
+      checkAnswer(index-1);
     }
     if (index == 4) {
       questions[index - 1] = -1
       currentQuestion = img4;
-      console.log("help");
+      checkAnswer(index-1);
     }
     if (index == 5) {
       questions[index - 1] = -1
       currentQuestion = img5;
-      console.log("help");
+      checkAnswer(index-1);
     }
     if (index == 6) {
       questions[index - 1] = -1
       currentQuestion = img6;
-      console.log("help");
+      checkAnswer(index-1);
     }
     if (index == 7) {
       questions[index - 1] = -1
       currentQuestion = img7;
-      console.log("help");
+      checkAnswer(index-1);
     }
     if (index == 8) {
       questions[index - 1] = -1
       currentQuestion = img8;
-      console.log("help");
+      checkAnswer(index-1);
     }
     if (index == 9) {
       questions[index - 1] = -1
       currentQuestion = img9;
-      console.log("help");
+      checkAnswer(index-1);
     }
     if (index == 10) {
       questions[index - 1] = -1
       currentQuestion = img10;
-      console.log("help");
+      checkAnswer(index-1);
     }
+}
+
+function checkAnswer(i) {
+    answerIndex = i
+    waitingforanswer = true;
 }
 
 function getKeydown(event) {
@@ -510,6 +520,46 @@ function getKeydown(event) {
     else if (event.keyCode == 40) {
         player.down = true;
         player.up = false;
+    }
+    if (event.keyCode == 65 && waitingforanswer) {
+      answer = "a"
+      realanswer = answers[answerIndex];
+        if (realanswer == answer) {
+            console.log("correct")
+        }
+        else {
+            console.log("incorrect")
+        }
+    }
+    if (event.keyCode == 66 && waitingforanswer) {
+      answer = "b"
+      realanswer = answers[answerIndex];
+        if (realanswer == answer) {
+            console.log("correct")
+        }
+        else {
+            console.log("incorrect")
+        }
+    }
+    if (event.keyCode == 67 && waitingforanswer) {
+      answer = "c"
+      realanswer = answers[answerIndex];
+        if (realanswer == answer) {
+            console.log("correct")
+        }
+        else {
+            console.log("incorrect")
+        }
+    }
+    if (event.keyCode == 68 && waitingforanswer) {
+      answer = "d"
+      realanswer = answers[answerIndex];
+        if (realanswer == answer) {
+            console.log("correct")
+        }
+        else {
+            console.log("incorrect")
+        }
     }
 }
 
