@@ -172,6 +172,37 @@ let dy;
 let gameState = "off"; // either "off", "level", or "question" to denote where the player is in the game
 let hardMode = false;
 
+let img1 = new Image();
+let img1Path = "images/question_1.png";
+img1.src = img1Path
+let img2 = new Image();
+let img2Path = "images/question_2.png";
+img2.src = img2Path
+let img3 = new Image();
+let img3Path = "images/question_3.png";
+img3.src = img3Path
+let img4 = new Image();
+let img4Path = "images/question_4.png";
+img4.src = img4Path
+let img5 = new Image();
+let img5Path = "images/question_5.png";
+img5.src = img5Path
+let img6 = new Image();
+let img6Path = "images/question_6.png";
+img6.src = img6Path
+let img7 = new Image();
+let img7Path = "images/question_7.png";
+img7.src = img7Path
+let img8 = new Image();
+let img8Path = "images/question_8.png";
+img8.src = img8Path
+let img9 = new Image();
+let img9Path = "images/question_9.png";
+img9.src = img9Path
+let img10 = new Image();
+let img10Path = "images/question_10.png";
+img10.src = img10Path
+
 setInterval(game, 10);
 
 window.onload = function() {
@@ -229,43 +260,43 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
         }
         if(index == 1) {
           questions[index-1] = -1
-          //put question 1 on canvas
+          context.drawImage(img1, 0, 0);
         }
         if(index == 2) {
           questions[index-1] = -1
-          //put question 2 on canvas
+          context.drawImage(img2, 0, 0);
         }
         if(index == 3) {
           questions[index-1] = -1
-          //put question 3 on canvas
+          context.drawImage(img3, 0, 0);
         }
         if(index == 4) {
           questions[index-1] = -1
-          //put question 4 on canvas
+          context.drawImage(img4, 0, 0);
         }
         if(index == 5) {
           questions[index-1] = -1
-          //put question 5 on canvas
+          context.drawImage(img5, 0, 0);
         }
         if(index == 6) {
           questions[index-1] = -1
-          //put question 6 on canvas
+          context.drawImage(img6, 0, 0);
         }
         if(index == 7) {
           questions[index-1] = -1
-          //put question 7 on canvas
+          context.drawImage(img7, 0, 0);
         }
         if(index == 8) {
           questions[index-1] = -1
-          //put question 8 on canvas
+          context.drawImage(img8, 0, 0);
         }
         if(index == 9) {
           questions[index-1] = -1
-          //put question 9 on canvas
+          context.drawImage(img9, 0, 0);
         }
         if(index == 10) {
           questions[index-1] = -1
-          //put question 10 on canvas
+          context.drawImage(img10, 0, 0);
         }
     }
     else if (gameState === "respawn") {
