@@ -21,6 +21,8 @@ let spawn = [
     {x: 50, y: 225}
 ]
 
+let questions = [1,2,3,4,5,6,7,8,9,10]
+
 let terrain = [ // each array in the terrain array is a level
     [
         {x: 0, y: 0, width: 50, height: canvas.height},
@@ -161,6 +163,8 @@ let winZones = [
     {x: 725, y: 175, width: 50, height: 200}
 ];
 
+let condition = false;
+let index;
 let level = 0;
 let speed = 2;
 let dx;
@@ -201,7 +205,68 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
         enemyMovement(level);
     }
     else if (gameState === "question") {
-        // put stuff here
+        for(i = 0; i < questions.length; i++) {
+          if(questions[i] != -1) {
+            condition = false;
+            break;
+          }
+          else {
+            condition = true;
+          }
+        }
+        if(condition = true) {
+          condition = false;
+          for(i = 0; i < questions.length; i++) {
+            questions[i] = i+1;
+          }
+        }
+        while(1 = 1) {
+          index = (Math.random()*questions.length);
+          Math.round(index);
+          if(questions[index] != -1) {
+            break;
+          }
+        }
+        if(index == 1) {
+          questions[index-1] = -1
+          //put question 1 on canvas
+        }
+        if(index == 2) {
+          questions[index-1] = -1
+          //put question 2 on canvas
+        }
+        if(index == 3) {
+          questions[index-1] = -1
+          //put question 3 on canvas
+        }
+        if(index == 4) {
+          questions[index-1] = -1
+          //put question 4 on canvas
+        }
+        if(index == 5) {
+          questions[index-1] = -1
+          //put question 5 on canvas
+        }
+        if(index == 6) {
+          questions[index-1] = -1
+          //put question 6 on canvas
+        }
+        if(index == 7) {
+          questions[index-1] = -1
+          //put question 7 on canvas
+        }
+        if(index == 8) {
+          questions[index-1] = -1
+          //put question 8 on canvas
+        }
+        if(index == 9) {
+          questions[index-1] = -1
+          //put question 9 on canvas
+        }
+        if(index == 10) {
+          questions[index-1] = -1
+          //put question 10 on canvas
+        }
     }
     else if (gameState === "respawn") {
         drawLevel(level);
