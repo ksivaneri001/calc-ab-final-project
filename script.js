@@ -237,7 +237,7 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
     if (gameState === "level") {
         drawLevel(level);
         collisionDetection(level);
-        // hitDetection(level);
+        hitDetection(level);
         move();
         enemyMovement(level);
     }
@@ -251,9 +251,10 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
 }
 
 function clearTest() {
-    player.x = spawn[level + 1].x;
-    player.y = spawn[level + 1].y;
     level++;
+    gameState = "level"
+    player.x = spawn[level].x;
+    player.y = spawn[level].y;
 }
 
 function drawLevel(a) {
@@ -525,7 +526,7 @@ function getKeydown(event) {
       answer = "a"
       realanswer = answers[answerIndex];
         if (realanswer == answer) {
-            console.log("correct")
+            clearTest();
         }
         else {
             console.log("incorrect")
@@ -535,7 +536,7 @@ function getKeydown(event) {
       answer = "b"
       realanswer = answers[answerIndex];
         if (realanswer == answer) {
-            console.log("correct")
+            clearTest();
         }
         else {
             console.log("incorrect")
@@ -545,7 +546,7 @@ function getKeydown(event) {
       answer = "c"
       realanswer = answers[answerIndex];
         if (realanswer == answer) {
-            console.log("correct")
+            clearTest();
         }
         else {
             console.log("incorrect")
@@ -555,7 +556,7 @@ function getKeydown(event) {
       answer = "d"
       realanswer = answers[answerIndex];
         if (realanswer == answer) {
-            console.log("correct")
+            clearTest();
         }
         else {
             console.log("incorrect")
