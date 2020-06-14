@@ -17,19 +17,11 @@
   font-size: 24px;
 }
 
-#subheader {
-  font-size: 20px;
-  color: red;
-}
-
 .container {
   color: red;
 }
 
 h1 {
-  border-bottom: 3px;
-  border-bottom-color: blue;
-  border-bottom-style: solid;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -39,10 +31,9 @@ h1 {
 }
 
 p {
-color: green;
-text-align: center;
-padding-top: 5px;
-padding-bottom: 5px;
-font: Comic;
-font-size: 18px;
+    color: lightgreen;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 18px;
 }
