@@ -435,11 +435,12 @@ function chooseQuestion() {
     //   }
     // }
     while (1 == 1) {
-      index = Math.ceil(Math.random() * questions.length);
+      index = (Math.random() * questions.length);
       // Math.round(index);
       if(index < 0.5) {
         index = 0
       }
+      index = Math.ceil(index)
       if (questions[index] != -1) {
         break;
       }
