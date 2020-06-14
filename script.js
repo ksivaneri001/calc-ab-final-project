@@ -222,7 +222,7 @@ document.addEventListener("keydown", getKeydown);
 document.addEventListener("keyup", getKeyup);
 
 function init() {
-    level = 5;
+    level = 0;
     player.x = spawn[level].x;
     player.y = spawn[level].y;
     hardMode = false;
