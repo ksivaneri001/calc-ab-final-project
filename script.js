@@ -501,6 +501,7 @@ function chooseQuestion() {
 }
 
 function checkAnswer(i) {
+    hardMode = false;
     answerIndex = i
     waitingforanswer = true;
 }
@@ -529,7 +530,8 @@ function getKeydown(event) {
             clearTest();
         }
         else {
-            console.log("incorrect")
+            hardMode = true;
+            clearTest();
         }
     }
     if (event.keyCode == 66 && waitingforanswer) {
@@ -539,7 +541,8 @@ function getKeydown(event) {
             clearTest();
         }
         else {
-            console.log("incorrect")
+            hardMode = true;
+            clearTest();
         }
     }
     if (event.keyCode == 67 && waitingforanswer) {
@@ -549,7 +552,8 @@ function getKeydown(event) {
             clearTest();
         }
         else {
-            console.log("incorrect")
+            hardMode = true;
+            clearTest();
         }
     }
     if (event.keyCode == 68 && waitingforanswer) {
@@ -559,7 +563,8 @@ function getKeydown(event) {
             clearTest();
         }
         else {
-            console.log("incorrect")
+            hardMode = true;
+            clearTest();
         }
     }
 }
