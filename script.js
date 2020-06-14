@@ -165,6 +165,7 @@ let winZones = [
 
 let condition = false;
 let index;
+let currentQuestion;
 let level = 0;
 let speed = 2;
 let dx;
@@ -174,34 +175,34 @@ let hardMode = false;
 
 let img1 = new Image();
 let img1Path = "images/question_1.png";
-img1.src = img1Path
+img1.src = img1Path;
 let img2 = new Image();
 let img2Path = "images/question_2.png";
-img2.src = img2Path
+img2.src = img2Path;
 let img3 = new Image();
 let img3Path = "images/question_3.png";
-img3.src = img3Path
+img3.src = img3Path;
 let img4 = new Image();
 let img4Path = "images/question_4.png";
-img4.src = img4Path
+img4.src = img4Path;
 let img5 = new Image();
 let img5Path = "images/question_5.png";
-img5.src = img5Path
+img5.src = img5Path;
 let img6 = new Image();
 let img6Path = "images/question_6.png";
-img6.src = img6Path
+img6.src = img6Path;
 let img7 = new Image();
 let img7Path = "images/question_7.png";
-img7.src = img7Path
+img7.src = img7Path;
 let img8 = new Image();
 let img8Path = "images/question_8.png";
-img8.src = img8Path
+img8.src = img8Path;
 let img9 = new Image();
 let img9Path = "images/question_9.png";
-img9.src = img9Path
+img9.src = img9Path;
 let img10 = new Image();
 let img10Path = "images/question_10.png";
-img10.src = img10Path
+img10.src = img10Path;
 
 setInterval(game, 10);
 
@@ -231,73 +232,12 @@ function game() { // basically a tick counter, each tick is 1/100 of a second
     if (gameState === "level") {
         drawLevel(level);
         collisionDetection(level);
-        hitDetection(level);
+        // hitDetection(level);
         move();
         enemyMovement(level);
     }
     else if (gameState === "question") {
-        for(i = 0; i < questions.length; i++) {
-          if(questions[i] != -1) {
-            condition = false;
-            break;
-          }
-          else {
-            condition = true;
-          }
-        }
-        if(condition = true) {
-          condition = false;
-          for(i = 0; i < questions.length; i++) {
-            questions[i] = i+1;
-          }
-        }
-        while(1 == 1) {
-          index = (Math.random()*questions.length);
-          Math.round(index);
-          if(questions[index] != -1) {
-            break;
-          }
-        }
-        if(index == 1) {
-          questions[index-1] = -1
-          context.drawImage(img1, 0, 0);
-        }
-        if(index == 2) {
-          questions[index-1] = -1
-          context.drawImage(img2, 0, 0);
-        }
-        if(index == 3) {
-          questions[index-1] = -1
-          context.drawImage(img3, 0, 0);
-        }
-        if(index == 4) {
-          questions[index-1] = -1
-          context.drawImage(img4, 0, 0);
-        }
-        if(index == 5) {
-          questions[index-1] = -1
-          context.drawImage(img5, 0, 0);
-        }
-        if(index == 6) {
-          questions[index-1] = -1
-          context.drawImage(img6, 0, 0);
-        }
-        if(index == 7) {
-          questions[index-1] = -1
-          context.drawImage(img7, 0, 0);
-        }
-        if(index == 8) {
-          questions[index-1] = -1
-          context.drawImage(img8, 0, 0);
-        }
-        if(index == 9) {
-          questions[index-1] = -1
-          context.drawImage(img9, 0, 0);
-        }
-        if(index == 10) {
-          questions[index-1] = -1
-          context.drawImage(img10, 0, 0);
-        }
+        ctx.drawImage(currentQuestion, 0, 0);
     }
     else if (gameState === "respawn") {
         drawLevel(level);
@@ -380,6 +320,7 @@ function collisionDetection(b) {
     }
 
     if (player.x >= winZones[b].x && player.x + player.length <= winZones[b].x + winZones[b].width && player.y >= winZones[b].y && player.y + player.length <= winZones[b].y + winZones[b].height) {
+        chooseQuestion();
         gameState = "question";
     }
 }
@@ -474,6 +415,81 @@ function enemyMovement(c) {
             default:
                 break;
         }
+    }
+}
+
+function chooseQuestion() {
+    // for (i = 0; i < questions.length; i++) {
+    //   if (questions[i] != -1) {
+    //     condition = false;
+    //     break;
+    //   }
+    //   else {
+    //     condition = true;
+    //   }
+    // }
+    // if (condition = true) {
+    //   condition = false;
+    //   for (i = 0; i < questions.length; i++) {
+    //     questions[i] = i+1;
+    //   }
+    // }
+    while (1 == 1) {
+      index = Math.ceil(Math.random() * questions.length);
+      // Math.round(index);
+      if (questions[index] != -1) {
+        break;
+      }
+    }
+    if (index == 1) {
+      questions[index - 1] = -1
+      currentQuestion = img1;
+      console.log("help");
+    }
+    if (index == 2) {
+      questions[index - 1] = -1
+      currentQuestion = img2;
+      console.log("help");
+    }
+    if (index == 3) {
+      questions[index - 1] = -1
+      currentQuestion = img3;
+      console.log("help");
+    }
+    if (index == 4) {
+      questions[index - 1] = -1
+      currentQuestion = img4;
+      console.log("help");
+    }
+    if (index == 5) {
+      questions[index - 1] = -1
+      currentQuestion = img5;
+      console.log("help");
+    }
+    if (index == 6) {
+      questions[index - 1] = -1
+      currentQuestion = img6;
+      console.log("help");
+    }
+    if (index == 7) {
+      questions[index - 1] = -1
+      currentQuestion = img7;
+      console.log("help");
+    }
+    if (index == 8) {
+      questions[index - 1] = -1
+      currentQuestion = img8;
+      console.log("help");
+    }
+    if (index == 9) {
+      questions[index - 1] = -1
+      currentQuestion = img9;
+      console.log("help");
+    }
+    if (index == 10) {
+      questions[index - 1] = -1
+      currentQuestion = img10;
+      console.log("help");
     }
 }
 
